@@ -14,12 +14,12 @@ jobs:
         node: [20, 22]
     runs-on: ubuntu-latest
     steps:
-      # actions/checkout v4, pinned to the commit resolved from the upstream tag
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      # actions/checkout v6, pinned to the commit resolved from the upstream tag
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
-      # actions/setup-node v4, pinned to the commit resolved from the upstream tag
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      # actions/setup-node v6, pinned to the commit resolved from the upstream tag
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version: ${{ matrix.node }}
           cache: npm
