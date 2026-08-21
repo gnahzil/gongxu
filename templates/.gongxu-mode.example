@@ -1,0 +1,17 @@
+# Gongxu 执行模式强制覆盖文件
+#
+# 用法：
+#   1. 把本文件复制为 .gongxu-mode（去掉 .example 后缀）
+#   2. 把最后一行内容改为 single-agent 或 multi-agent 之一
+#   3. 不想强制覆盖时删除 .gongxu-mode；三个隔离角色均可用时自动选择 multi-agent，
+#      否则选择 single-agent
+#
+# 取值：
+#   single-agent   强制由主 Agent 分阶段承担三个角色
+#   multi-agent    强制使用隔离的 Planner / Executor / Evaluator；平台能力或角色定义缺失时停止
+#
+# 注意：读取时忽略空行和以 # 开头的注释，只允许下方出现唯一有效配置值。显式或自动
+# 选择 multi-agent 后，子 Agent 调用失败不会静默降级。不存在 .gongxu-mode 才允许自动选择。
+# .gongxu-mode 文件本身不进 git（建议加到 .gitignore，个人配置）。
+
+single-agent

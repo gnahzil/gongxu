@@ -1,0 +1,72 @@
+name: Bug 报告
+description: 报告可复现的 Gongxu 安装、CLI 或工作流问题
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。安全漏洞、凭据、内部地址或生产数据请使用
+        [Private vulnerability reporting](https://github.com/gnahzil/gongxu/security/advisories/new)，不要提交公开 Issue。
+  - type: input
+    id: version
+    attributes:
+      label: Gongxu 版本
+      description: 运行 `gongxu --version` 或填写使用的 Git ref。
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent 环境
+      options:
+        - Claude Code
+        - Codex
+        - 两者
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: 运行环境
+      description: 请填写操作系统、Node.js 版本和必要的运行时信息。
+      placeholder: macOS 15 / Node.js 22
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 最小复现步骤
+      description: 只提供可公开、已脱敏的命令和输入。
+      placeholder: |
+        1. 运行……
+        2. 执行……
+        3. 观察到……
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为与证据
+      description: 可附 exit code、最短错误摘要或脱敏截图；不要粘贴秘密和内部路径。
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 其他上下文
+      description: 可填写启用的 Profiles、Extras 或最小配置片段。
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 安全确认
+      options:
+        - label: 我已移除凭据、私有 URL、生产数据和其他敏感信息。
+          required: true

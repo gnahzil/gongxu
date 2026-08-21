@@ -1,0 +1,42 @@
+.worktrees/
+.private-journal/
+.claude/
+.idea/
+.serena/
+.vscode/
+.DS_Store
+*.iml
+node_modules/
+coverage/
+*.log
+npm-debug.log*
+
+# 环境与包管理凭据
+.env
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+.pypirc
+credentials.json
+secrets.local.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+
+# 安装器生成的项目级副本
+.agents/skills/
+.claude/skills/
+.codex/agents/
+.claude/agents/
+
+# Gongxu 本机私有状态
+.gongxu-mode
+.gongxu/brainstorm/
+.gongxu/backups/
+.gongxu/context.local.md
+.gongxu/triage-private/
+.gongxu/logs/
+rules/e2e-runtime/*.local.yml

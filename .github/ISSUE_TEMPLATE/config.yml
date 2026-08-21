@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞报告
+    url: https://github.com/gnahzil/gongxu/security/advisories/new
+    about: 请通过 Private vulnerability reporting 私下提交安全问题。

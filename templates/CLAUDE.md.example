@@ -1,0 +1,37 @@
+<!-- Gongxu Claude Code 项目模板；替换占位符。 -->
+
+# <工作区名> 工作规则
+
+## 1. 核心约束
+
+1. 实际读取命中的 `rules/*.md`；所有 Markdown 遵守 `rules/markdown-style-guide.md`。
+2. 测试遵守 `rules/testing.md`：可改相关测试并自动运行 targeted tests；full suite、生产、破坏性、付费或敏感测试先确认。
+3. 仅当对应 profile 文件存在时加载 `rules/profiles/<profile>/`；`human-owned-testing` 覆盖默认测试策略，`mysql-strict` 增加 MySQL 约束。
+4. 只调用已安装的 Extra Skill；缺失时提示 `npx gongxu@latest extra enable <name>`，非持久化来源同时提供 `--source`，不得自动修改配置或静默降级。
+5. Bug 先定位根因；完成前提供新鲜验证证据。未经要求不得 commit、push、发布或配置远程。
+6. 工作区依次由 Gongxu config、Git 根、cwd 解析。默认产物根为 `docs/gongxu`，但以 `.gongxu/config.json` 为准。
+7. 外部 API/SDK/框架/CLI/云交互先查锁定版本官方资料并记录来源与重检条件。
+
+## 2. 项目上下文（仅填写公共安全信息）
+
+- 模块与职责：`<仓库相对路径及职责>`
+- API/消息/数据契约入口：`<仓库相对路径或公开文档>`
+- source roots：`<仓库相对路径>`
+- 版本与发布策略来源：`<配置或文档>`
+- 验证命令：`<targeted test / build / lint>`
+- 可观测性与排障入口：`<只写平台类别和公共说明，不写内部 URL>`
+- 生产边界：默认只读；写入、恢复、破坏性操作必须由用户批准。
+- 密钥管理：仅记录环境变量名或密钥引用，不记录值。
+- 异常日志：允许字段 `<标量字段>`；脱敏策略 `<策略>`；堆栈日志所有者 `<边界>`。
+
+可选 `.gongxu/context.local.md` 仅供本机使用。文件存在时可读取以定位本地入口；
+不得把其内容复制到公开产物、提交、错误消息或日志，也不得在其中存放真实秘密。
+
+## 3. 视觉与 E2E
+
+视觉来源使用 provider-neutral 契约；Figma 来源自动选择 Figma adapter，其他来源用
+可用 verifier。非 UI 任务不创建视觉门禁；缺 verifier 明示 evidence gap。每个
+manual E2E Case 标记 `executor: agent | user` 和 `purpose`；除极小档外至少有一个
+`business-understanding` 关键路径由用户亲自验证。安全本地/测试环境可由 Agent 执行，
+敏感、生产、破坏性、付费或无权限场景由用户执行并标记 `PENDING_USER`。最终归档前，
+人工关键路径必须通过、明确豁免或说明不适用。

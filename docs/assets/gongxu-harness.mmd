@@ -1,0 +1,50 @@
+flowchart TB
+    INPUT[需求输入<br/>PRD · 视觉来源 · 代码现状] --> ROUTE{规模与迷雾判断}
+
+    ROUTE -->|极小需求| QUICK[快速通道<br/>确认 · 修改 · 最窄验证]
+    ROUTE -->|高迷雾| WAY[Wayfinder<br/>收敛路线与关键决策]
+    ROUTE -->|路线清晰的大需求| SPLIT[按独立业务结果<br/>拆分 Sub Spec]
+    ROUTE -->|单个清晰需求| SUB[当前 Sub Spec]
+    WAY --> ROUTE
+    SPLIT --> SUB
+
+    SUB --> BRAIN[Brainstorming + Grilling<br/>探索领土 · 消除未知项]
+    BRAIN --> FROZEN[state.md<br/>冻结 Contract · Scope · Acceptance]
+    FROZEN --> PLAN[Planner<br/>生成依赖有序的 Execution Units]
+    PLAN --> E2E[manual-e2e.md<br/>关键业务路径与验收 Case]
+    E2E --> APPROVE{人工实现批准}
+    APPROVE --> EXEC[Executor<br/>实施授权单元 · 提供事实证据]
+    EXEC --> EVAL[Evaluator<br/>独立验收 Contract 与 Acceptance]
+
+    EVAL -->|NEEDS_WORK| REPAIR[结构化 Repair Packet]
+    REPAIR --> EXEC
+    EVAL -->|契约 / 范围 / 高风险变化| BRAIN
+    EVAL -->|PASS| HUMAN{人工关键路径验收}
+    HUMAN -->|通过 / 明确豁免 / 不适用| FINISH[分支收尾<br/>Merge · PR · 保留 · 丢弃]
+    HUMAN -->|待执行| HOLD[保持 complete<br/>记录 Resume 与剩余风险]
+    HOLD --> HUMAN
+    FINISH --> ARCHIVE[压缩并原地归档<br/>退出活跃上下文]
+
+    ARCHIVE --> MORE{还有 Sub Spec？}
+    MORE -->|是| SUB
+    MORE -->|否| DONE[需求交付完成]
+    QUICK --> DONE
+
+    STATE[(唯一活跃状态源<br/>state.md + revision)]
+    STATE -.-> BRAIN
+    STATE -.-> PLAN
+    STATE -.-> EXEC
+    STATE -.-> EVAL
+
+    classDef ai fill:#153766,stroke:#66a7ff,color:#f3f8ff,stroke-width:2px;
+    classDef human fill:#4b3514,stroke:#f2bd59,color:#fff8e7,stroke-width:2px;
+    classDef state fill:#123f40,stroke:#55d6c2,color:#effffc,stroke-width:2px;
+    classDef repair fill:#4a2027,stroke:#ff7f8b,color:#fff2f3,stroke-width:2px;
+    classDef neutral fill:#253047,stroke:#7e91b2,color:#f5f7fb,stroke-width:2px;
+
+    class INPUT,ROUTE,SUB,QUICK,SPLIT neutral;
+    class WAY,BRAIN,PLAN,EXEC,EVAL ai;
+    class APPROVE,HUMAN human;
+    class REPAIR,HOLD repair;
+    class FROZEN,E2E,ARCHIVE,STATE,DONE state;
+    class FINISH,MORE neutral;

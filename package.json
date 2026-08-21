@@ -1,0 +1,55 @@
+{
+  "name": "gongxu",
+  "version": "0.1.0",
+  "description": "面向研发团队的 AI 工程流程 Harness",
+  "type": "module",
+  "author": "gnahzil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnahzil/gongxu.git"
+  },
+  "homepage": "https://github.com/gnahzil/gongxu#readme",
+  "bugs": {
+    "url": "https://github.com/gnahzil/gongxu/issues"
+  },
+  "bin": {
+    "gongxu": "bin/gongxu.js"
+  },
+  "files": [
+    "agents/",
+    "bin/",
+    "docs/assets/",
+    "extras/",
+    "rules/",
+    "skills/",
+    "src/",
+    "templates/",
+    "README.md",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/gongxu.js && node --check src/cli.js && node --check src/installer.js && node --check skills/brainstorming/scripts/server.cjs && npm run check:sensitive",
+    "check:sensitive": "node src/check-sensitive-files.js",
+    "prepublishOnly": "npm test && npm run check"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "agent-skills",
+    "ai-engineering",
+    "codex",
+    "claude-code",
+    "harness",
+    "workflow"
+  ],
+  "license": "MIT"
+}
